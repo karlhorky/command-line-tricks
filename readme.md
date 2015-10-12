@@ -1,4 +1,6 @@
-# command-line-tricks
+# Command Line Tricks
+
+Various command line tricks collected over the years.
 
 ## gzip web assets
 
