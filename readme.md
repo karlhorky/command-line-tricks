@@ -16,7 +16,7 @@ Source: [How to concatenate two MP4 files using FFmpeg? (Answer) | Stack Overflo
 
 Loop over CSS, JS, EOT, SVG and TTF files and gzip them into a folder named `gzipped`.
 
-[gzip-web-assets.sh](https://github.com/karlhorky/command-line-tricks/blob/master/gzip-web-assets.sh)
+[gzip-web-assets.sh](https://github.com/karlhorky/command-line-tricks/blob/main/gzip-web-assets.sh)
 
 ## Find and Replace in Git Remote
 
