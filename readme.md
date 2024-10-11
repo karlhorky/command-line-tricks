@@ -4,7 +4,7 @@ A collection of useful command line tricks
 
 ## Create File with Content
 
-To create a file including content (overwriting any existing file), use `echo` with the `-e` flag (to allow for escape sequences like the `\n` newline) and redirect to a file with `>`:
+To create a file including content (overwriting the file if it exists), use `echo` with the `-e` flag (to allow for escape sequences like the `\n` newline) and redirect to a file with `>`:
 
 ```bash
 echo -e 'abc\ndef' > 1.txt
