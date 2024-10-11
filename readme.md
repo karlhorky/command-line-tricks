@@ -2,6 +2,31 @@
 
 A collection of useful command line tricks
 
+## Create File with Content
+
+To create a file including content (overwriting any existing file), use `echo` with the `-e` flag (to allow for escape sequences like the `\n` newline) and redirect to a file with `>`:
+
+```bash
+echo -e 'abc\ndef' > 1.txt
+```
+
+Now `1.txt` will include the following content:
+
+```
+abc
+def
+```
+
+To make multi-line content more readable, use `cat` with a heredoc tag like `EOF`:
+
+```bash
+cat << EOF > main.ts
+import { add } from './add.js';
+
+console.log(add(2,3));
+EOF
+```
+
 ## FFmpeg: Combine two video files
 
 Combine two video files using [FFmpeg](https://ffmpeg.org/)
