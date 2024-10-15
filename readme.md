@@ -62,3 +62,28 @@ for file in $(find . -type f -depth 1 | egrep "\.(css|js|eot|svg|ttf)$") ; do
   gzip -c --best $file > gzipped/$file
 done
 ```
+
+## Easily get a PID with `pgrep`
+
+Programs crash and can become unresponsive, but they can be terminated with `kill -9 <PID>`. But how do you get the PID?
+
+One way would be to run the following (which I ran to get the PID of the running wezterm terminal):
+
+```sh
+ps ax | grep wezterm
+# 1586   ??  S      0:06.03 /Applications/WezTerm.app/Contents/MacOS/wezterm-gui
+# 6367 s006  S+     0:00.00 grep wezterm
+```
+
+While this does show the PID, it also shows more information than needed and also the PID of the `grep` command we are using. An easier way that only returns the PId would be `pgrep`: 
+
+```sh
+pgrep wezterm
+# 1586
+```
+
+This could the be piped to `kill` to terminate the program. Or you could use `pkill` which pretty much does that for you:
+
+```sh
+pkill wezterm
+```
