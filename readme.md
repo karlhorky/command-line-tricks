@@ -62,3 +62,13 @@ for file in $(find . -type f -depth 1 | egrep "\.(css|js|eot|svg|ttf)$") ; do
   gzip -c --best $file > gzipped/$file
 done
 ```
+
+## Wrap command and exit based on stdout
+
+To wrap a command and exit based on stdout from the command, loop over each line of the stdout to look for the message. If the message is found, set a variable to `true` and exit with code `1`:
+
+```bash
+pnpm install | { has_ignored_build_scripts=false; while IFS= read -r line; do echo "$line"; [[ "$line" == *"Ignored build scripts:"* ]] && has_ignored_build_scripts=true; done; [[ "$has_ignored_build_scripts" = false ]]; }
+```
+
+Source: [Fail `pnpm install` on pnpm v10 ignored build scripts](https://github.com/karlhorky/pnpm-tricks#fail-pnpm-install-on-pnpm-v10-ignored-build-scripts)
