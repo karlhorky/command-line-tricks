@@ -63,6 +63,42 @@ for file in $(find . -type f -depth 1 | egrep "\.(css|js|eot|svg|ttf)$") ; do
 done
 ```
 
+## Set zsh custom tab title
+
+To set a custom terminal tab title with zsh, configure [the zsh `precmd` and `preexec` hook functions](https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions) in `.zshrc`:
+
+`~/.zshrc`
+
+```bash
+# Disable auto-setting terminal title.
+DISABLE_AUTO_TITLE="true"
+function precmd () {
+  echo -ne "\033]0;Custom title: $(print -rD $PWD)\007"
+}
+precmd
+
+function preexec () {
+  print -Pn "\e]0;🚀 $(print -rD $PWD) $1 🚀\a"
+}
+```
+
+This will change the tab title as such:
+
+1. Show the `Custom title:` prefix before the present working directory
+2. When a foreground program is running, rocket emojis will appear at the beginning and end of the prompt to show a visual indicator that something is running
+
+https://github.com/user-attachments/assets/535b243c-3f4b-4b85-8a96-d1766ab8d000
+
+To use this with [Ghostty](https://ghostty.org/), disable Ghostty's built-in shell integration using [`shell-integration-features = no-title`](https://ghostty.org/docs/config/reference#shell-integration-features):
+
+`~/Library/Application Support/com.mitchellh.ghostty/config`
+
+```ini
+# Disable Ghostty built-in tab title shell integration
+# https://ghostty.org/docs/config/reference#shell-integration-features
+shell-integration-features = no-title
+```
+
 ## Wrap command and exit based on stdout
 
 To wrap a command and exit based on stdout from the command, loop over each line of the stdout to look for the message. If the message is found, set a variable to `true` and exit with code `1`:
